@@ -2,9 +2,9 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {{ block.super}}
-<h2 style="color: white;">Sign up</h2>
+<h2>Sign up</h2>
 <div class="cd">
-  <form class="" method="post" style="color: white;">
+  <form class="" method="post" >
     {% csrf_token %}
     {{ form|crispy }}
     <button type="submit" name="button">Login</button>

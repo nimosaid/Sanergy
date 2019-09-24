@@ -6,8 +6,8 @@ from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
-#first page - signup page
-def signup(request):
+
+def login(request):
     if request.method=='POST':
         form = UserCreationForm(request.POST)
 

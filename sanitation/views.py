@@ -23,17 +23,17 @@ def index(request):
 
 
 
-
-# def search_project(request):
-
-#     if 'project' in request.GET and request.GET["project"]:
-#         search_term = request.GET.get("project")
-#         searched_project = Project.search_by_name(search_term)
-#         message = f"{search_term}"
-
-#         return render(request, 'search.html',locals())
-
-#     else:
-#         message = "You haven't searched for any term"
-#         return render(request, 'search.html',locals())
-
+def payment(request):
+    if request.method == 'POST':
+        form = PaymentForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            name=form.save(commit=False)
+            phone_Number= form.save(commit=False)
+            amount = form.save(commit=False)
+            account= form.save(commit=False)
+            payment.save()
+            return redirect(hood)
+    else:
+        form = PaymentForm()
+    return render(request,'payment.html',locals())

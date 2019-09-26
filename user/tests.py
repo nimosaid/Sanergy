@@ -1,11 +1,16 @@
 from django.test import TestCase
-from .models import User
-
+from .models import Profile
+from django.contrib.auth.models import User
 
 # Create your tests here.
-class Test_profile(TestCase):
+class Test_Profile(TestCase):
     def setup(self):
-        self.user=(id=1,username='peter',account_number='12345678',password='ppppppp'
+        self.user= User(id=1,phone_number='peter',account_number='12345678',password='ppppppp')
         self.user.save()
 
-        
+    def tearDown(self):
+        User.objects.all().delete()
+
+    def test_is_instance(self):
+        self.assertTrue(isinstance(self.user,User))   
+    

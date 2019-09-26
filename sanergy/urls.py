@@ -18,5 +18,4 @@ from django.urls import url
 
 urlpatterns = [
     url('admin/', admin.site.urls),
-    url(r'^profile/$',views.profile,name='profile'),
 ]

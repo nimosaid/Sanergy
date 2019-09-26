@@ -1,7 +1,4 @@
-h1
-{
-  color: blue;
-}
-.flaticon-copy:before {
-    content: "\f117";
+body {
+  background-image:url('https://images.unsplash.com/photo-1563002559-ca4ac0669a38?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80');
+  
 }

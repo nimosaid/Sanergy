@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from .models import *
 from .forms import *
 from django.shortcuts import get_object_or_404
+import requests
+from requests.auth import HTTPBasicAuth
+import json
 
 
 # Create your views here.
@@ -24,16 +27,12 @@ def index(request):
 
 
 
-# def search_project(request):
-
-#     if 'project' in request.GET and request.GET["project"]:
-#         search_term = request.GET.get("project")
-#         searched_project = Project.search_by_name(search_term)
-#         message = f"{search_term}"
-
-#         return render(request, 'search.html',locals())
-
-#     else:
-#         message = "You haven't searched for any term"
-#         return render(request, 'search.html',locals())
+def getAccessToken(request):
+    consumer_key = 'ZGWH5CJonGUS9C7eRzvkQGgzMJShHaDD'
+    consumer_secret = 'fcobUM436AD9TwyB'
+    api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
+    r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
+    mpesa_access_token = json.loads(r.text)
+    validated_mpesa_access_token = mpesa_access_token['access_token']
+    return HttpResponse(validated_mpesa_access_token)
 

@@ -79,13 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'sanergy',
-<<<<<<< HEAD
         'USER': 'postgres',
     'PASSWORD':'levertco',
-=======
-        'USER': 'moringa',
-    'PASSWORD':'vinceobindi1005',
->>>>>>> fe073c049c5c715e3eadcd570f01b2015244c0cc
     }
 }
 
@@ -127,20 +122,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
-=======
-
-MEDIA_URL='/media/'
-MEDIA_ROOT=os.path.join(BASE_DIR,'media')
-STATICFILES_DIRS = (
-	os.path.join(BASE_DIR, 'static'),
-)
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
-
->>>>>>> fe073c049c5c715e3eadcd570f01b2015244c0cc

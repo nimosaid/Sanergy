@@ -22,45 +22,9 @@ def login(request):
 #landing page - home page
 def index(request):
 
-<<<<<<< HEAD
-    index_path = Project.objects.all()
-    return render(request,'index.html',locals())
-=======
-    return render(request,'index.html')
->>>>>>> fe073c049c5c715e3eadcd570f01b2015244c0cc
-
     index_path = Project.objects.all()
     return render(request,'index.html',locals())
 
-
-<<<<<<< HEAD
-def payment(request):
-    if request.method == 'POST':
-        form = PaymentForm(request.POST,request.FILES)
-        if form.is_valid():
-            form.save()
-            name=form.save(commit=False)
-            phone_Number= form.save(commit=False)
-            amount = form.save(commit=False)
-            account= form.save(commit=False)
-            payment.save()
-            return redirect(hood)
-    else:
-        form = PaymentForm()
-    return render(request,'payment.html',locals())
-
-
-def getAccessToken(request):
-    consumer_key = 'ZGWH5CJonGUS9C7eRzvkQGgzMJShHaDD'
-    consumer_secret = 'fcobUM436AD9TwyB'
-    api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
-    r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
-    mpesa_access_token = json.loads(r.text)
-    validated_mpesa_access_token = mpesa_access_token['access_token']
-    return HttpResponse(validated_mpesa_access_token)
-
-
-=======
 
 def payment(request):
     if request.method == 'POST':
@@ -78,17 +42,6 @@ def payment(request):
     return render(request,'payment.html',locals())
 
 
-def getAccessToken(request):
-    consumer_key = 'ZGWH5CJonGUS9C7eRzvkQGgzMJShHaDD'
-    consumer_secret = 'fcobUM436AD9TwyB'
-    api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
-    r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
-    mpesa_access_token = json.loads(r.text)
-    validated_mpesa_access_token = mpesa_access_token['access_token']
-    return HttpResponse(validated_mpesa_access_token)
-
-
->>>>>>> fe073c049c5c715e3eadcd570f01b2015244c0cc
 def getAccessToken(request):
     consumer_key = 'cHnkwYIgBbrxlgBoneczmIJFXVm0oHky'
     consumer_secret = '2nHEyWSD4VjpNh2g'

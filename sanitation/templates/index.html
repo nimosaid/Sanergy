@@ -46,7 +46,7 @@ nav li {
 }
 
 nav a {
-  color: white;
+  color: #eedc12;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 14px;
@@ -54,11 +54,11 @@ nav a {
 
 nav a:hover {
   color: white;
-}
+  
 
 nav a::before {
   content: '';
-  display: block;
+  display : block;
   height: 5px;
   background-color: #444;
 
@@ -81,18 +81,18 @@ nav a:hover::before {
     <div class="container">
     <div id="logo">
     
-    <a class="logo" href="#">
+    <a class="logo" href="{% url 'homePage' %}">
     <header>
     <div class="container">
      
-    <img class="fixed-logo" style="" src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-color-195.png" width="160px" alt="Sanergy">
+    <img class="fixed-logo"  src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-color-195.png" width="160px" alt="Sanergy">
    
       <nav>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Pricing</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="{% url 'homePage' %}">Home</a></li>
+          <li><a href="#">Client Login</a></li>
+          <li><a href="#">Staff Login</a></li>
+          
         </ul>
       </nav>
     </div>
@@ -149,41 +149,48 @@ solutions that serve all urban residents and are 4 times cheaper than sewers.</s
     <h6 style=" font-family: 'Nunito', sans-serif;
     text-align: center;
     font-size: 90px;
-    color: #eedc12;"> Contact Us</h6>
+    color: #eedc12;"> Contacts</h6>
     <div class="row">
         <div class="col-lg-4 " styles="text-align: center;color:white;font-size:40px;">
         
-            <br><br><img id="phone" src="static/icons/phone-call.png">
+            <br><br>
             <div id="call " style="font-size: 20px;
         color:#eedc12;">
-                (+254)790657234
-                <br>
-                <br>
-                (+254)567890433
+                
+                
             </div>
         </div>
+        <br>
+        <br>
         <div class="col-lg-3 quick" style="color: azure;
       font-family: 'Nunito', sans-serif;color:#eedc12;font-size:20px;">
-            <h3>Quick links</h3>
+      <br>
+      <br>
+            <h3 style="font-weight:700;">Reach Us</h3>
+            <br>
             <ul>
-                <li>Services</li>
-                <li>FAQ</li>
-                <li>Contact us</li>
-                <li>Terms & Conditions</li>
-                <li>Privacy Policy</li>
+                <p>Sameer Africa, Enterprise Road</p>
+                <p>Nairobi, Kenya</p>
+                <p>+254 788 511 824</p>
+                <p>info@saner.gy</p>
+                <p>Privacy Policy</p>
                 
             </ul>
         </div>
+        <br>
+        <br>
         <div class="col-lg-2 quick" style="color: azure;
     font-family: 'Nunito', sans-serif;font-size:20px;color:#eedc12;">
-            <h3>Our Services</h3>
+    <br>
+    <br>
+            <h3 style="font-weight:700;">Follow Us</h3>
+            <br>
             <ul>
-                <li>L</li>
-                <li>Wa</li>
-                <li>Wan</li>
-                <li>Pre</li>
-                <li>Dr</li>
-                <li>St </li>
+                <img src="static/icons/icn_google.png">
+                <img src="static/icons/icn_instagram.png">
+                <img src="static/icons/icn_linkedin.png">
+                <img src="static/icons/icn_twitter.png">
+                
             </ul>
         </div>
 
@@ -192,11 +199,7 @@ solutions that serve all urban residents and are 4 times cheaper than sewers.</s
     
     <div class="footer">
         <div id="icons" styles="align: center; color:#eedc12;">
-            <img src="static/icons/icn_google.png">
-            <img src="static/icons/icn_instagram.png">
-            <img src="static/icons/icn_linkedin.png">
-            <img src="static/icons/icn_twitter.png">
-            <img src="static/icons/icn_facebook.png">
+            
         </div>
         
         

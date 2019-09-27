@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 
 def login(request):
     if request.method=='POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterCustomer(request.POST)
 
         if form.is_valid():
             form.save()
@@ -18,22 +18,5 @@ def login(request):
 #landing page - home page
 def index(request):
 
-    index_path = Project.objects.all()
+    # index_path = Project.objects.all()
     return render(request,'index.html',locals())
-
-
-
-
-# def search_project(request):
-
-#     if 'project' in request.GET and request.GET["project"]:
-#         search_term = request.GET.get("project")
-#         searched_project = Project.search_by_name(search_term)
-#         message = f"{search_term}"
-
-#         return render(request, 'search.html',locals())
-
-#     else:
-#         message = "You haven't searched for any term"
-#         return render(request, 'search.html',locals())
-

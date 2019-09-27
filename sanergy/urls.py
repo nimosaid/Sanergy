@@ -15,8 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+
 import sanitation.urls
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'',include('sanitation.urls')),
 ]
+
+from django.conf.urls import url,include
+
+urlpatterns = [
+    url('admin/', admin.site.urls),
+    url(r'',include('sanitation.urls')),
+
+]
+

@@ -3,12 +3,107 @@
 {{ block.super}}
 {% load bootstrap4%}
 
+<<<<<<< HEAD
 <div class="container">
     <div id="logo">
     
     <a class="logo" href="http://www.sanergy.com">
     <img class="fixed-logo" src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-color-195.png" width="160px" alt="Sanergy">
     <img class="nav-logo" src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-white-195.png" width="160px" alt="Sanergy">
+=======
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+header {
+  background: none;
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.logo {
+  float: left;
+  padding: 10px 0;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 23px;
+
+  position: relative;
+}
+
+nav a {
+  color: #eedc12;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: white;
+  
+
+nav a::before {
+  content: '';
+  display : block;
+  height: 5px;
+  background-color: #444;
+
+  position: absolute;
+  top: 0;
+  width: 0%;
+
+  transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+
+</style>
+
+   
+    <div class="slider-parallax-inner"
+    style="background: url('static/img/slum.jpg') center center no-repeat; background-size: 100%; height: 700px; background-attachment: fixed;">
+    <div class="container">
+    <div id="logo">
+    
+    <a class="logo" href="{% url 'homePage' %}">
+    <header>
+    <div class="container">
+     
+    <img class="fixed-logo"  src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-color-195.png" width="160px" alt="Sanergy">
+   
+      <nav>
+        <ul>
+          <li><a href="{% url 'homePage' %}">Home</a></li>
+          <li><a href="#">Client Login</a></li>
+          <li><a href="#">Staff Login</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+>>>>>>> fe073c049c5c715e3eadcd570f01b2015244c0cc
     </a>
     </div>
     <div class="navbar-header page-scroll">
@@ -20,11 +115,94 @@
     <div class="mobile-cart">
     </div>
     </div>
+<<<<<<< HEAD
     <div id="main-menu" class="collapse navbar-collapse  navbar-right">
     <ul id="menu-nav" class="nav navbar-nav"><li id="menu-item-7674" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-4948 current_page_item menu-item-7674 active"><a title="Home" href="">Home</a></li>
     <li id="menu-item-7384" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7384"><a title="Login" href="">Login</a></li>
     </ul> </div>
     </div>
+=======
+    </div></div></div></div>
+
+</div>
+<div class="maps"
+    style="background: url('static/img/map10.jpg') center center no-repeat; background-size: 100%; height: 300px; background-attachment: fixed; ">
+    <div class="loc" style="padding-left: 800px;padding-top: 140px;">
+        <i class="glyphicon glyphicon-map-marker " aria-hidden="true"></i> <a target="_blank"
+            href="https://www.google.com/maps/search/?api=1&query=laundry_shops" style="color:rgb(14, 13, 13)"
+            >
+            
+        </a></div>
+</div>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top"><img src="static/icons/chevron-up.png"></button>
+
+<div id="contacts"
+    style="background: url('static/img/map10.jpg') center center no-repeat; background-size: 100%; height: 800px; background-attachment: fixed;">
+
+    <h6 style=" font-family: 'Nunito', sans-serif;
+    text-align: center;
+    font-size: 90px;
+    color: #eedc12;"> Contacts</h6>
+    <div class="row">
+        <div class="col-lg-4 " styles="text-align: center;color:white;font-size:40px;">
+        
+            <br><br>
+            <div id="call " style="font-size: 20px;
+        color:#eedc12;">
+                
+                
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="col-lg-3 quick" style="color: azure;
+      font-family: 'Nunito', sans-serif;color:#eedc12;font-size:20px;">
+      <br>
+      <br>
+            <h3 style="font-weight:700;">Reach Us</h3>
+            <br>
+            <ul>
+                <p>Sameer Africa, Enterprise Road</p>
+                <p>Nairobi, Kenya</p>
+                <p>+254 788 511 824</p>
+                <p>info@saner.gy</p>
+                <p>Privacy Policy</p>
+                
+            </ul>
+        </div>
+        <br>
+        <br>
+        <div class="col-lg-2 quick" style="color: azure;
+    font-family: 'Nunito', sans-serif;font-size:20px;color:#eedc12;">
+    <br>
+    <br>
+            <h3 style="font-weight:700;">Follow Us</h3>
+            <br>
+            <ul>
+                <img src="static/icons/icn_google.png">
+                <img src="static/icons/icn_instagram.png">
+                <img src="static/icons/icn_linkedin.png">
+                <img src="static/icons/icn_twitter.png">
+                
+            </ul>
+        </div>
+
+       
+    </div>
+    
+    <div class="footer">
+        <div id="icons" styles="align: center; color:#eedc12;">
+            
+        </div>
+        
+        
+        </div>
+    </div>      
+</div>
+
+
+>>>>>>> fe073c049c5c715e3eadcd570f01b2015244c0cc
 
 </div>      
      

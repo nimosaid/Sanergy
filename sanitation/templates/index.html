@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 {{ block.super}}
-{% load bootstrap3 %}
-{% load static %}
-<style>
+{% load bootstrap4%}
 
+<<<<<<< HEAD
+<div class="container">
+    <div id="logo">
+    
+    <a class="logo" href="http://www.sanergy.com">
+    <img class="fixed-logo" src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-color-195.png" width="160px" alt="Sanergy">
+    <img class="nav-logo" src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-white-195.png" width="160px" alt="Sanergy">
+=======
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
 
 .container {
@@ -97,37 +103,25 @@ nav a:hover::before {
       </nav>
     </div>
   </header>
+>>>>>>> fe073c049c5c715e3eadcd570f01b2015244c0cc
     </a>
     </div>
-        <div>
-            <p style="text-align: center; color:white;;font-weight: bold;line-height: 1.4;font-size: 90px;padding-top:200px;">Clean communities,  </p>
-            <p style="text-align: center; color:white;font-weight: bold;line-height: 1.4;font-size: 90px;">a cleaner country.</p>
-        </div>
+    <div class="navbar-header page-scroll">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-menu">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </button>
+    <div class="mobile-cart">
     </div>
-
-</div>
-<br>
-<br>
-<h1 style="color: #005486ff;text-align: center;font-family:Montserrat;font-weight:700;font-style:normal ;font-size:40px; " class="vc_custom_heading">THE URBAN SANITATION</h1>
-
-<br>
-<br>
-<br>
-
-    <div class="vc_row wpb_row vc_inner vc_row-fluid vc_row-o-content-middle vc_row-flex"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
-    <div class="wpb_text_column wpb_content_element ">
-    <div class="wpb_wrapper">
-    <p dir="ltr" style="text-align: center;"><span style="color: #005486ff; font-size:20px;">Cities are growing faster than ever. Currently, 60 million new residents move to urban areas every year.<br>
-25% live in slums, amounting to 1 billion people with inadequate housing and limited access to basic<br>
-services. This number is expected to double to 2 billion by 2030.<br>
-In Kenya, loss of productivity due to illness costs the country 1% of its GDP every year and at current<br>
-rates, complete sanitation coverage will take 150 years. Sanergy provides non-sewered sanitation<br>
-solutions that serve all urban residents and are 4 times cheaper than sewers.</span></p>
     </div>
-    <br>
-    <br>
-    <br>
+<<<<<<< HEAD
+    <div id="main-menu" class="collapse navbar-collapse  navbar-right">
+    <ul id="menu-nav" class="nav navbar-nav"><li id="menu-item-7674" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-4948 current_page_item menu-item-7674 active"><a title="Home" href="">Home</a></li>
+    <li id="menu-item-7384" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7384"><a title="Login" href="">Login</a></li>
+    </ul> </div>
     </div>
+=======
     </div></div></div></div>
 
 </div>
@@ -208,96 +202,9 @@ solutions that serve all urban residents and are 4 times cheaper than sewers.</s
 </div>
 
 
+>>>>>>> fe073c049c5c715e3eadcd570f01b2015244c0cc
 
-
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-<script>
-    $(document).ready(function () {
-        var qty = $("#qty");
-        qty.keyup(function () {
-            var total = isNaN(parseInt(qty.val() * $("#price").val())) ? 0 : (qty.val() * $("#price").val())
-            $("#total").val(total);
-        });
-    });
-    $(document).ready(function () {
-        var qty1 = $("#qty1");
-        qty1.keyup(function () {
-            var total1 = isNaN(parseInt(qty1.val() * $("#price1").val())) ? 0 : (qty1.val() * $("#price1").val())
-            $("#total1").val(total1);
-        });
-    });
-    $(document).ready(function () {
-        var qty2 = $("#qty2");
-        qty2.keyup(function () {
-            var total2 = isNaN(parseInt(qty2.val() * $("#price2").val())) ? 0 : (qty2.val() * $("#price2").val())
-            $("#total2").val(total2);
-        });
-    });
-    $(document).ready(function () {
-        var grandTotal = $("#grandTotal");
-        ("#btn-sum").onClick(function () {
-            var grandTotal = isNaN(parseInt($("#total").val() + $("#total1").val()) + $("#total2").val())
-            $("#total2").val(total2);
-        });
-    });
-       // When the user scrolls down 20px from the top of the document, show the button
-       window.onscroll = function () { scrollFunction() };
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            document.getElementById("myBtn").style.display = "block";
-        } else {
-            document.getElementById("myBtn").style.display = "none";
-        }
-    }
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
-</script>
-
-<style>
-    .jumbotron {
-        color: rgba(0, 0, 0, 0.5);
-    }
-    
-    
-    h3 {
-        text-align: center;
-    }
-    .pacifico {
-        font-family: 'Pacifico', cursive;
-    }
-    .col-md-4.col-sm-12 {
-        text-align: center;
-    }
-    @media only screen and (max-width: 600px) {
-        
-        .display-1 {
-            font-size: 2.5rem;
-        }
-    }
-    #myBtn {
-        display: none;
-        position: fixed;
-        bottom: 20px;
-        right: 30px;
-        z-index: 99;
-        font-size: 18px;
-        border: none;
-        outline: none;
-        background-color: transparent;
-        color: white;
-        cursor: pointer;
-        padding: 15px;
-        border-radius: 4px;
-    }
-</style>
-
-    
-    
+</div>      
+     
     
       {% endblock %}

@@ -1,7 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-
+class User(models.Model):
+    first_name=models.CharField(max_length = 65, blank=True)
+    last_name=models.CharField(max_length = 65, blank=True)
+    phone_number=models.IntegerField(default=0, blank= True)
+    user_id_number= models.IntegerField(default=0, blank=True)
+    location=models.CharField(max_length = 65, blank=True)
 
 class Payment(models.Model):
     name = models.CharField(max_length = 65, blank=True)
@@ -12,6 +17,9 @@ class Payment(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save_payment(self):
+        self.save()    
 
 
 class BaseModel(models.Model):
@@ -52,5 +60,15 @@ class MpesaPayment(BaseModel):
     def __str__(self):
         return self.first_name        
 
+class Toilet(models.Model):
+    account_number= models.CharField(max_length=100)
+    toilet_tag= models.CharField(max_length=100)
+    user= models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def save_toilet(self):
+        self.save()
+
+    def __str__(self):
+        return self.toilet    
 
 

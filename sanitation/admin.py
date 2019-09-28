@@ -4,3 +4,4 @@ from .models import *
 
 
 admin.site.register(MpesaPayment)
+admin.site.register(User)

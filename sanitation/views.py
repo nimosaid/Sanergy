@@ -35,7 +35,7 @@ def payment(request):
             amount = form.save(commit=False)
             account= form.save(commit=False)
             payment.save()
-            return redirect(hood)
+            return redirect(payment)
     else:
         form = PaymentForm()
     return render(request,'payment.html',locals())

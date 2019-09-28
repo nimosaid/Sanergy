@@ -10,7 +10,7 @@ class User(models.Model):
 
 class Payment(models.Model):
     name = models.CharField(max_length = 65, blank=True)
-    account = models.IntegerField(default=0)
+    account = models.CharField(max_length = 65, blank=True)
     phone_Number= models.IntegerField(default=0)
     amount = models.IntegerField(default=0)
 
@@ -63,7 +63,7 @@ class MpesaPayment(BaseModel):
 class Toilet(models.Model):
     account_number= models.CharField(max_length=100)
     toilet_tag= models.CharField(max_length=100)
-    user= models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id_number = models.ForeignKey(User,null=True)
 
     def save_toilet(self):
         self.save()

@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'sanergy',
-        'USER': 'postgres',
-    'PASSWORD':'levertco',
+        'USER': 'nimo',
+    'PASSWORD':'brayo',
     }
 }
 

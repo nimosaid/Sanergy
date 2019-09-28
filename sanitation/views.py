@@ -8,6 +8,8 @@ import json
 from .mpesa_credentials import *
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
+from .forms import *
+
 
 
 
@@ -121,3 +123,7 @@ def confirmation(request):
         "ResultDesc": "Accepted"
     }
     return JsonResponse(dict(context))    
+
+
+
+

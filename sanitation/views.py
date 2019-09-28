@@ -34,12 +34,29 @@ def payment(request):
             phone_Number= form.save(commit=False)
             amount = form.save(commit=False)
             account= form.save(commit=False)
-            payment.save()
-            return redirect(payment)
+            # payment.save()
+            return redirect(lipa_na_mpesa_online)
     else:
         form = PaymentForm()
     return render(request,'payment.html',locals())
 
+def toilet(request):
+
+
+    this_user_id_number = User.objects.all()
+    if request.method == 'POST':
+
+        form = ToiletForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            account_number=form.save(commit=False)
+            toilet_tag=form.save(commit=False) 
+            # toilet.save()
+            return redirect(index)
+    else:
+        form = ToiletForm()
+    return render(request,'toilet.html',locals())            
+   
 
 def getAccessToken(request):
     consumer_key = 'ZGWH5CJonGUS9C7eRzvkQGgzMJShHaDD'

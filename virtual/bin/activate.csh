@@ -8,7 +8,11 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
+<<<<<<< HEAD
 setenv VIRTUAL_ENV "/home/nimo/Documents/Moringa-django-projects/Sanergy/virtual"
+=======
+setenv VIRTUAL_ENV "/home/petermagecha/Documents/Sanergy/virtual"
+>>>>>>> f6c82a684c50085a19aa1598b3884f785a628229
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"

@@ -2,7 +2,6 @@ from django.db import models
 
 
 
-
 class Payment(models.Model):
     name = models.CharField(max_length = 65, blank=True)
     account = models.IntegerField(default=0)
@@ -12,6 +11,7 @@ class Payment(models.Model):
 
     def __str__(self):
         return self.name
+<<<<<<< HEAD
 
 
 class BaseModel(models.Model):
@@ -51,3 +51,5 @@ class MpesaPayment(BaseModel):
         verbose_name_plural = 'Mpesa Payments'
     def __str__(self):
         return self.first_name        
+=======
+>>>>>>> f6c82a684c50085a19aa1598b3884f785a628229

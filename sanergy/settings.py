@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'sanitation',
     'bootstrap3',
+    'bootstrap4',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,8 +80,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'sanergy',
+
         'USER': 'nimo',
-    'PASSWORD':'brayo',
+
+        'USER': 'petermagecha',
+    'PASSWORD': '1234',
+
     }
 }
 

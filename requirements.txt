@@ -1,9 +1,11 @@
+sqlparse==0.3.0
 beautifulsoup4==4.8.0
 certifi==2019.9.11
 chardet==3.0.4
 Django==1.11
 django-bootstrap3==11.1.0
 django-bootstrap4==1.0.1
+django-registration==2.4.1
 idna==2.8
 psycopg2==2.8.3
 pytz==2019.2

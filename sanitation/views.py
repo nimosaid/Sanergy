@@ -76,6 +76,7 @@ def lipa_na_mpesa_online(request):
     }
     response = requests.post(api_url, json=request, headers=headers)
     return HttpResponse('success')    
+<<<<<<< HEAD
 
 
 
@@ -121,3 +122,5 @@ def confirmation(request):
         "ResultDesc": "Accepted"
     }
     return JsonResponse(dict(context))    
+=======
+>>>>>>> f6c82a684c50085a19aa1598b3884f785a628229

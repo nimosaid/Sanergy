@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'sanergy',
-        'USER': 'moringa',
-    'PASSWORD':'vinceobindi1005',
+        'USER': 'postgres',
+    'PASSWORD':'levertco',
     }
 }
 
@@ -134,4 +134,3 @@ STATICFILES_DIRS = (
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-

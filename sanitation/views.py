@@ -17,7 +17,7 @@ def login(request):
 
         if form.is_valid():
             form.save()
-        return render('login')
+        return render(request,'login')
 
 #landing page - home page
 def index(request):

@@ -9,6 +9,8 @@ from .mpesa_credentials import *
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from .forms import *
+from mpesa_api.core.mpesa import Mpesa
+
 
 
 

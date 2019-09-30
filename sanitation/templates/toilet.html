@@ -1,14 +1,54 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 {{ block.super}}
 {% load bootstrap3%}
-<h1>Register toilet here</h1>
-<div class="col-md-8">
-    <form action="{% url 'toilet' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <input type="submit" class="btn btn-success" value="Register">
-    </form>
-</div>
 
+<style>
+
+#id_account_number{
+    height: 50px;
+    border-radius: 25px;
+    text-align:center;
+    font-size:17px;
+    color: #005486ff;
+    font-weight:bold;
+}
+#id_toilet_tag{
+    height: 50px;
+    border-radius: 25px;
+    text-align:center;
+    font-size:17px;
+    color: #005486ff;
+    font-weight:bold;
+}
+</style>
+<body style=" background: url('static/img/slum.jpg');" >
+<br>
+<br>
+
+
+    <div class="container"style="background-color:none;text-align:center; color:#eedc12; font-size:20px">
+    <br>
+  
+        <img class="fixed-logo"  src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-color-195.png" width="180px" alt="Sanergy">
+        <br>
+        <br>
+        <br>
+        <br>
+
+        
+        <br>
+  
+            
+            <form action="{% url 'toilet' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <br>
+                
+                <input type="submit" class="btn btn-primary" value="Register" style="border-radius: 15px 50px 30px; color:#eedc12 ;font-size:20px">
+            </form>
+        
+    </div>
+</body>
 {% endblock %}

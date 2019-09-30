@@ -41,6 +41,25 @@ def payment(request):
         form = PaymentForm()
     return render(request,'payment.html',locals())
 
+def toilet(request):
+
+
+    this_user_id_number = User.objects.all()
+    if request.method == 'POST':
+
+        form = ToiletForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            account_number=form.save(commit=False)
+            toilet_tag=form.save(commit=False) 
+            # toilet.save()
+            return redirect(index)
+    else:
+        form = ToiletForm()
+    return render(request,'toilet.html',locals())            
+   
+
+
 
 def getAccessToken(request):
     consumer_key = 'cHnkwYIgBbrxlgBoneczmIJFXVm0oHky'

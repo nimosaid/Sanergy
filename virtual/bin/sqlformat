@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-#!/home/nimo/Documents/Moringa-django-projects/Sanergy/virtual/bin/python
-=======
 #!/home/petermagecha/Documents/Sanergy/virtual/bin/python3
 
->>>>>>> f6c82a684c50085a19aa1598b3884f785a628229
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -7,7 +7,7 @@
     <form action="{% url 'payment' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <input type="submit" class="btn btn-success" value="Update">
+        <input type="submit" class="btn btn-success" value="Pay">
     </form>
 </div>
 

@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "virtual/bin/python"
+    "python.pythonPath": "virtual/bin/python",
+    "git.ignoreLimitWarning": true
 }

@@ -2,6 +2,7 @@
 {% block content %}
 {{ block.super}}
 {% load bootstrap3%}
+
 <body>
     <div class="col-md-8">
         <form action="{% url 'payment' %}" method="POST" enctype="multipart/form-data">
@@ -11,4 +12,14 @@
         </form>
     </div>
 </body>
+
+<div class="col-md-8">
+    <form action="{% url 'payment' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-success" value="Pay">
+    </form>
+</div>
+
+
 {% endblock %}

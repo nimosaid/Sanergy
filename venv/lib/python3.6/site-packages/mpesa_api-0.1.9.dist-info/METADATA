@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: mpesa-api
+Version: 0.1.9
+Summary: Mpesa B2C, C2B, STKPush Django library based on the new Api's https://developer.safaricom.co.ke
+Home-page: https://github.com/lemaiyan/mpesa_api
+Author: Jijo Lemaiyan
+Author-email: george@lemaiyan.xyz
+License: MIT License
+Download-URL: https://github.com/lemaiyan/mpesa_api/archive/0.1.8.tar.gz
+Platform: UNKNOWN
+Requires: Django (>=2.1.7)
+Requires: djangorestframework (>=3.7.3)
+Requires: celery (>=4.1.0)
+Requires: requests (>=2.18.4)
+
+UNKNOWN
+
+

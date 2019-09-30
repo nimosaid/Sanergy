@@ -11,7 +11,7 @@ class User(models.Model):
 class Payment(models.Model):
     name = models.CharField(max_length = 65, blank=True)
     account = models.CharField(max_length = 65, blank=True)
-    phone_Number= models.IntegerField(default=0)
+    phone_Number= models.CharField(max_length=15)
     amount = models.IntegerField(default=0)
 
 

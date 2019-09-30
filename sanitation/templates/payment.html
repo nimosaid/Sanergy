@@ -3,12 +3,13 @@
 {{ block.super}}
 {% load bootstrap3%}
 
-<div class="col-md-8">
-    <form action="{% url 'payment' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <input type="submit" class="btn btn-success" value="Pay">
-    </form>
-</div>
-
+<body style="background-image:url('static/img/slum2.jpg')">
+    <div class="container">
+        <form action="{% url 'payment' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <input type="submit" class="btn btn-success" value="Update">
+        </form>
+    </div>
+</body>
 {% endblock %}

@@ -10,6 +10,9 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from .forms import *
 from mpesa_api.core.mpesa import Mpesa
+from .serializer import *
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 #landing page - home page
@@ -139,4 +142,31 @@ def confirmation(request):
 
 
 
+class PaymentList(APIView):
+    def get(self, request, format=None):
+        all_mpesapayment = MpesaPayment.objects.all()
+        serializers = MpesaPaymentSerializer(all_mpesapayment   , many=True)
+        return Response(serializers.data)
+
+        
+
+    url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest?api_key=ZGWH5CJonGUS9C7eRzvkQGgzMJShHaDD'
+	r = requests.get(url.format()).json()
+	movie_list = r['results']
+	print(movie_list)
+	movie_results = []
+	for movie_item in movie_list:
+		id = movie_item.get('id')
+		title = movie_item.get('original_title')
+		overview = movie_item.get('overview')
+		image = movie_item.get('poster_path')
+		rating = movie_item.get('vote_average')
+		vote_count = movie_item.get('vote_count'),
+		age = movie_item.get('genre_ids[3]')
+
+		if image:
+			movie_object = Movie(id,title,overview,image,rating,vote_count,age)
+			movie_results.append(movie_object)
+			
+	return render(request, "home.html", {"allmovies": movie_results})
 

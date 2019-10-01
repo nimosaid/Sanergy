@@ -7,6 +7,10 @@ import requests
 from requests.auth import HTTPBasicAuth
 import json
 from .mpesa_credentials import *
+from django.http import JsonResponse
+from django.core import serializers
+from json import dumps
+
 
 
 # Create your views here.
@@ -31,12 +35,12 @@ def payment(request):
         form = PaymentForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            name=form.save(commit=False)
-            phone_Number= form.save(commit=False)
-            amount = form.save(commit=False)
-            account= form.save(commit=False)
-            payment.save()
-            return redirect(hood)
+            phone_Number = form.cleaned_data['phone_Number']
+            amount = form.cleaned_data['amount']
+            # form.save(commit=False)
+            # payment.save()
+            lipa_na_mpesa_online(phone_Number,amount)
+            return redirect(lipa_na_mpesa_online)
     else:
         form = PaymentForm()
     return render(request,'payment.html',locals())
@@ -69,7 +73,7 @@ def getAccessToken(request):
     mpesa_access_token = json.loads(r.text)
     validated_mpesa_access_token = mpesa_access_token['access_token']
     return HttpResponse(validated_mpesa_access_token)
-def lipa_na_mpesa_online(request):
+def lipa_na_mpesa_online(phone=None,amount=None):
     access_token = MpesaAccessToken.validated_mpesa_access_token
     api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
     headers = {"Authorization": "Bearer %s" % access_token}
@@ -78,13 +82,15 @@ def lipa_na_mpesa_online(request):
         "Password": LipanaMpesaPpassword.decode_password,
         "Timestamp": LipanaMpesaPpassword.lipa_time,
         "TransactionType": "CustomerPayBillOnline",
-        "Amount": 1,
-        "PartyA": 254717654230,  # replace with your phone number to get stk push
+        "Amount": amount,
+        "PartyA": phone,  # replace with your phone number to get stk push
         "PartyB": LipanaMpesaPpassword.Business_short_code,
-        "PhoneNumber": 254717654230,  # replace with your phone number to get stk push
+        "PhoneNumber": phone,  # replace with your phone number to get stk push
         "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
         "AccountReference": "Obindi",
         "TransactionDesc": "Testing stk push"
     }
-    response = requests.post(api_url, json=request, headers=headers)
-    return HttpResponse('success')    
+    # response = requests.post(api_url, json=request, headers=headers) 
+    return HttpResponse(JsonResponse(api_url,safe=False), content_type="application/json")
+  
+    

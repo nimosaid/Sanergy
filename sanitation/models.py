@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from json import dumps
+from django.http import JsonResponse
+from django.core import serializers
 
 class User(models.Model):
     first_name=models.CharField(max_length = 65, blank=True)

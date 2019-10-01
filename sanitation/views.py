@@ -1,11 +1,13 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import *
+from .forms import *
 from django.shortcuts import get_object_or_404
 import requests
 from requests.auth import HTTPBasicAuth
 import json
 from .mpesa_credentials import *
+<<<<<<< HEAD
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from .forms import *
@@ -13,16 +15,25 @@ from mpesa_api.core.mpesa import Mpesa
 from .serializer import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
+=======
 
+
+# Create your views here.
+
+def login(request):
+    if request.method=='POST':
+        form = UserCreationForm(request.POST)
+>>>>>>> accb98b2a5f84e50c095c686034d5945fb1084de
+
+        if form.is_valid():
+            form.save()
+        return render('login')
 
 #landing page - home page
 def index(request):
 
-    return render(request,'index.html')
 
-    index_path = Project.objects.all()
     return render(request,'index.html',locals())
-
 
 
 def payment(request):
@@ -30,12 +41,21 @@ def payment(request):
         form = PaymentForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
+<<<<<<< HEAD
             phone_Number = form.cleaned_data['phone_Number']
             amount = form.cleaned_data['amount']
             # form.save(commit=False)
             # payment.save()
             lipa_na_mpesa_online(phone_Number, amount)
             return redirect(lipa_na_mpesa_online)
+=======
+            name=form.save(commit=False)
+            phone_Number= form.save(commit=False)
+            amount = form.save(commit=False)
+            account= form.save(commit=False)
+            payment.save()
+            return redirect(hood)
+>>>>>>> accb98b2a5f84e50c095c686034d5945fb1084de
     else:
         form = PaymentForm()
     return render(request,'payment.html',locals())
@@ -58,14 +78,6 @@ def toilet(request):
     return render(request,'toilet.html',locals())            
    
 
-def getAccessToken(request):
-    consumer_key = 'ZGWH5CJonGUS9C7eRzvkQGgzMJShHaDD'
-    consumer_secret = 'fcobUM436AD9TwyB'
-    api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
-    r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
-    mpesa_access_token = json.loads(r.text)
-    validated_mpesa_access_token = mpesa_access_token['access_token']
-    return HttpResponse(validated_mpesa_access_token)
 
 
 def getAccessToken(request):

@@ -62,8 +62,8 @@ class MpesaPayment(BaseModel):
 
 class Toilet(models.Model):
     account_number= models.CharField(max_length=100)
-    toilet_tag = models.CharField(max_length=100)
-    user_id_number = models.ForeignKey(User,null=True)
+    toilet_tag= models.CharField(max_length=100)
+    user_id_number = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
 
     def save_toilet(self):
         self.save()

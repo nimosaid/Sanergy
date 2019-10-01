@@ -2,13 +2,59 @@
 {% block content %}
 {{ block.super}}
 {% load bootstrap3%}
+<style>
 
-<div class="col-md-8">
-    <form action="{% url 'payment' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <input type="submit" class="btn btn-success" value="Pay">
-    </form>
-</div>
+#id_name{
+    height: 50px;
+    border-radius: 25px;
+    text-align:center;
+    font-size:17px;
+    color: #005486ff;
+    font-weight:bold;
+}
+#id_account{
+    height: 50px;
+    border-radius: 25px;
+    text-align:center;
+    font-size:17px;
+    color: #005486ff;
+    font-weight:bold;
+}
 
+#id_phone_Number{
+    height: 50px;
+    border-radius: 25px;
+    text-align:center;
+    font-size:17px;
+    color: #005486ff;
+    font-weight:bold;
+}
+#id_amount{
+    height: 50px;
+    border-radius: 25px;
+    text-align:center;
+    font-size:17px;
+    color: #005486ff;
+    font-weight:bold;
+}
+
+</style>
+<body style="background: url('static/img/slum.jpg');">
+<br>
+<br>
+
+
+
+    <div class="container" style="background-color:none;text-align:center; color:#eedc12; font-size:25px">
+        <img class="fixed-logo"  src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-color-195.png" width="180px" alt="Sanergy">
+        <br>
+        <br>
+        <br>
+        <form action="{% url 'payment' %}" method="POST" enctype="multipart/form-data" style="background:none; ">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <input type="submit" class="btn btn-primary" value="Update" style="border-radius: 15px 50px 30px; color:#eedc12 ;font-size:25px">
+        </form>
+    </div>
+</body>
 {% endblock %}

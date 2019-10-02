@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-sqlparse==0.3.0
-=======
 3-1==1.0.0
 amqp==2.5.1
->>>>>>> vin
 beautifulsoup4==4.8.0
 billiard==3.6.1.0
 celery==4.3.0
@@ -15,10 +11,7 @@ django-admin-rangefilter==0.5.0
 django-bootstrap3==11.1.0
 django-bootstrap4==1.0.1
 django-registration==2.4.1
-<<<<<<< HEAD
-=======
 djangorestframework==3.10.3
->>>>>>> vin
 idna==2.8
 importlib-metadata==0.23
 kombu==4.6.4

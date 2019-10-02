@@ -31,19 +31,25 @@ class BaseModel(models.Model):
 class MpesaCalls(BaseModel):
     ip_address = models.TextField()
     caller = models.TextField()
+    merchant_id = models.TextField(null=False)
+    checkout_request_id=models.TextField(null=False)
     conversation_id = models.TextField()
     content = models.TextField()
     class Meta:
         verbose_name = 'Mpesa Call'
         verbose_name_plural = 'Mpesa Calls'
+
 class MpesaCallBacks(BaseModel):
     ip_address = models.TextField()
-    caller = models.TextField()
+    caller = models.TextField() 
+    merchant_id = models.TextField(null=False)
+    checkout_request_id=models.TextField(null=False)
     conversation_id = models.TextField()
     content = models.TextField()
     class Meta:
         verbose_name = 'Mpesa Call Back'
         verbose_name_plural = 'Mpesa Call Backs'
+
 class MpesaPayment(BaseModel):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()

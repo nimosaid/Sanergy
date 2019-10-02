@@ -27,7 +27,7 @@ SECRET_KEY = 'l$^$(_&plghod^x7u9$xqoc7evs(rpsnh2i&273819t)=24_3_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 ######## C2B MPESA DETAILS.#########
 
@@ -131,8 +131,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'sanergy',
-        'USER': 'nimo',
-    'PASSWORD': 'brayo',
+        'USER': 'moringa',
+    'PASSWORD': 'vinceouma1005',
     }
 }
 

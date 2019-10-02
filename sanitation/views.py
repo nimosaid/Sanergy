@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import *
 from .forms import *
 from django.shortcuts import get_object_or_404
@@ -7,7 +7,6 @@ import requests
 from requests.auth import HTTPBasicAuth
 import json
 from .mpesa_credentials import *
-<<<<<<< HEAD
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from .forms import *
@@ -15,20 +14,8 @@ from mpesa_api.core.mpesa import Mpesa
 from .serializer import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
-=======
 
-
-# Create your views here.
-
-def login(request):
-    if request.method=='POST':
-        form = UserCreationForm(request.POST)
->>>>>>> accb98b2a5f84e50c095c686034d5945fb1084de
-
-        if form.is_valid():
-            form.save()
-        return render('login')
-
+      
 #landing page - home page
 def index(request):
 
@@ -41,30 +28,12 @@ def payment(request):
         form = PaymentForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-<<<<<<< HEAD
-<<<<<<< HEAD
-            phone_Number = form.cleaned_data['phone_Number']
-            amount = form.cleaned_data['amount']
-=======
-            phone_Number = form.cleaned_data['phone_Number']
-            amount = form.cleaned_data['amount']
 
->>>>>>> vin
-            # form.save(commit=False)
-            # payment.save()
+            phone_Number = form.cleaned_data['phone_Number']
+            amount = form.cleaned_data['amount']
             lipa_na_mpesa_online(phone_Number, amount)
-            return redirect(lipa_na_mpesa_online)
-<<<<<<< HEAD
-=======
-            name=form.save(commit=False)
-            phone_Number= form.save(commit=False)
-            amount = form.save(commit=False)
-            account= form.save(commit=False)
-            payment.save()
-            return redirect(hood)
->>>>>>> accb98b2a5f84e50c095c686034d5945fb1084de
-=======
->>>>>>> vin
+            return redirect('bills')
+
     else:
         form = PaymentForm()
     return render(request,'payment.html',locals())
@@ -83,7 +52,7 @@ def toilet(request):
             # form.save(commit=False)
             # payment.save()
             lipa_na_mpesa_online(phone_Number, amount)
-            return redirect(lipa_na_mpesa_online)
+            return redirect('bills')
     else:
         form = ToiletForm()
     return render(request,'toilet.html',locals())            
@@ -114,11 +83,19 @@ def lipa_na_mpesa_online(phone, amount):
         "PartyA": phone,  # replace with your phone number to get stk push
         "PartyB": LipanaMpesaPpassword.Business_short_code,
         "PhoneNumber": phone,  # replace with your phone number to get stk push
-        "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
+        "CallBackURL": "https://0e070bc3.ngrok.io/confirmation/",
         "AccountReference": "Obindi",
         "TransactionDesc": "Testing stk push"
     }
     response = requests.post(api_url, json=request, headers=headers)   
+    if response.status_code==200:
+        data = response.json()
+        if 'ResponseCode' in data.keys():
+            if data['ResponseCode']==0:
+                merchant_id = data['MerchantRequestID']
+        pass
+    merchant_id = response
+    print(response.json())
 
 
 
@@ -146,24 +123,42 @@ def validation(request):
 @csrf_exempt
 def confirmation(request):
     mpesa_body =request.body.decode('utf-8')
-    mpesa_payment = json.loads(mpesa_body)
-    payment = MpesaPayment(
-        first_name=mpesa_payment['FirstName'],
-        last_name=mpesa_payment['LastName'],
-        middle_name=mpesa_payment['MiddleName'],
-        description=mpesa_payment['TransID'],
-        phone_number=mpesa_payment['MSISDN'],
-        amount=mpesa_payment['TransAmount'],
-        reference=mpesa_payment['BillRefNumber'],
-        organization_balance=mpesa_payment['OrgAccountBalance'],
-        type=mpesa_payment['TransactionType'],
-    )
-    payment.save()
-    context = {
-        "ResultCode": 0,
-        "ResultDesc": "Accepted"
-    }
-    return JsonResponse(dict(context))    
+    try:
+        mpesa_payment = json.loads(mpesa_body)
+    except Exception as e:
+        print(e)
+        context = {
+            "ResultCode": 1,
+            "ResultDesc": "Accepted"
+        }
+        return JsonResponse(dict(context)) 
+    print(mpesa_payment) 
+    if mpesa_payment['Body']['stkCallback']['ResultCode']==0:
+        mpesa_payment = mpesa_payment['Body']['stkCallback']['CallbackMetadata']['Item']
+        print(mpesa_payment)
+        # payment = MpesaPayment(
+        #     first_name=mpesa_payment['FirstName'],
+        #     last_name=mpesa_payment['LastName'],
+        #     middle_name=mpesa_payment['MiddleName'],
+        #     description=mpesa_payment['TransID'],
+        #     phone_number=mpesa_payment[4]['Value'],
+        #     amount=mpesa_payment[0]['Value'],
+        #     reference=mpesa_payment[1]['Value'],
+        #     organization_balance=mpesa_payment['OrgAccountBalance'],
+        #     type=mpesa_payment['TransactionType'],
+        # )
+        # payment.save()
+        b = Bills(
+           phone_number=mpesa_payment[4]['Value'],
+           reference=mpesa_payment[1]['Value'],
+           amount=mpesa_payment[0]['Value']
+        ) 
+        b.save()
+        context = {
+            "ResultCode": 0,
+            "ResultDesc": "Accepted"
+        }
+        return JsonResponse(dict(context))    
 
 
 
@@ -189,5 +184,7 @@ def bills(request):
         reference = detail.get('reference')
         return HttpResponse(response.text)
 
-    return render(request, 'bills.html', {'details': details})
+    bills=Bills.objects.all()
+
+    return render(request, 'bills.html', {'bills': bills})
 

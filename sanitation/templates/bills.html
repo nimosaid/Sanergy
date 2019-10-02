@@ -8,9 +8,10 @@
 
 <div class="container">
     <h1>No Transactions done yet</h1>
-{% for details in detail%}
+{% for bill in bills %}
 
-<p>{{ amount}}</p>
+<p> AMOUNT :{{ bill.amount}}</p>
+<p> PHONE NUMBER :{{ bill.phone_number }}</p>
 
 
 {% endfor %}

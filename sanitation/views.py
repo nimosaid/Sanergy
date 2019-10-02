@@ -7,7 +7,12 @@ import requests
 from requests.auth import HTTPBasicAuth
 import json
 from .mpesa_credentials import *
+from django.views.decorators.csrf import csrf_exempt
+from .models import *
+from .forms import *
 
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 # Create your views here.
 
@@ -88,61 +93,6 @@ def lipa_na_mpesa_online(request):
     }
     response = requests.post(api_url, json=request, headers=headers)
     return HttpResponse('success')    
-
-@csrf_exempt
-def register_urls(request):
-    access_token = MpesaAccessToken.validated_mpesa_access_token
-    api_url = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl"
-    headers = {"Authorization": "Bearer %s" % access_token}
-    options = {"ShortCode": LipanaMpesaPpassword.Business_short_code,
-               "ResponseType": "Completed",
-               "ConfirmationURL": "http://127.0.0.1:8000/api/v1/c2b/confirmation",
-               "ValidationURL": "http://127.0.0.1:8000/api/v1/c2b/validation"}
-    response = requests.post(api_url, json=options, headers=headers)
-    return HttpResponse(response.text)
-@csrf_exempt
-def call_back(request):
-    pass
-@csrf_exempt
-def validation(request):
-    context = {
-        "ResultCode": 0,
-        "ResultDesc": "Accepted"
-    }
-    return JsonResponse(dict(context))
-@csrf_exempt
-def confirmation(request):
-    mpesa_body =request.body.decode('utf-8')
-    mpesa_payment = json.loads(mpesa_body)
-    payment = MpesaPayment(
-        first_name=mpesa_payment['FirstName'],
-        last_name=mpesa_payment['LastName'],
-        middle_name=mpesa_payment['MiddleName'],
-        description=mpesa_payment['TransID'],
-        phone_number=mpesa_payment['MSISDN'],
-        amount=mpesa_payment['TransAmount'],
-        reference=mpesa_payment['BillRefNumber'],
-        organization_balance=mpesa_payment['OrgAccountBalance'],
-        type=mpesa_payment['TransactionType'],
-    )
-    payment.save()
-    context = {
-        "ResultCode": 0,
-        "ResultDesc": "Accepted"
-    }
-    return JsonResponse(dict(context))    
-
-
-
-class PaymentList(APIView):
-    def get(self, request, format=None):
-        all_mpesapayment = MpesaPayment.objects.all()
-        serializers = MpesaPaymentSerializer(all_mpesapayment   , many=True)
-        return Response(serializers.data)
-
-        
-
-   
 
 #consuming mpesa api biils
 

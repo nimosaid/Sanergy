@@ -1,19 +1,41 @@
-{% extends 'base.html' %}
-{% block content %}
-{{ block.super}}
+{%extends 'base.html'%}
 {% load bootstrap3 %}
 {% load static %}
+{% block content %} 
+{{ block.super}}
 
 
 
 <div class="container">
-    <h1>No Transactions done yet</h1>
-{% for details in detail%}
 
-<p>{{ amount}}</p>
+  <!-- Looping through news   -->
+  {% for payment in payments %}
 
+  <div class="row">
+    <!-- displaying News articles -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <h2 class="text-center"> {{ payment.title }} </h2>
+    </div>
 
-{% endfor %}
+     <!--Display news Article images  -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <img src="static/img/map10.jpg" class="img-responsive" alt="Image">
+    </div>
+
+  </div>
+
+  {% empty %}
+  <div class="row">
+    <h2 class="text-center">No Transactions done yet</h2>
+  </div>
+  {% endfor %}
+
 </div>
 
+
 {% endblock %}
+
+
+
+
+

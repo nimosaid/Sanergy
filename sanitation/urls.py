@@ -18,6 +18,7 @@ urlpatterns = [
     url('online/lipa', views.lipa_na_mpesa_online, name='lipa_na_mpesa'),
     url(r'^api/payment/$', views.PaymentList.as_view())
 
+    url(r'^bills',views.bills,name='bills')
 
 ]
 if settings.DEBUG:

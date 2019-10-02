@@ -71,4 +71,14 @@ class Toilet(models.Model):
     def __str__(self):
         return self.toilet_tag    
 
+class Bills(models.Model):
+    amount=models.IntegerField(blank=True)
+    phone_number=models.TextField()
+    reference=models.TextField()
 
+    def __str__(self):
+        return str(self.amount) 
+
+
+    def save_bills(self):
+        self.save()

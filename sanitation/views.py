@@ -42,12 +42,19 @@ def payment(request):
         if form.is_valid():
             form.save()
 <<<<<<< HEAD
+<<<<<<< HEAD
             phone_Number = form.cleaned_data['phone_Number']
             amount = form.cleaned_data['amount']
+=======
+            phone_Number = form.cleaned_data['phone_Number']
+            amount = form.cleaned_data['amount']
+
+>>>>>>> vin
             # form.save(commit=False)
             # payment.save()
             lipa_na_mpesa_online(phone_Number, amount)
             return redirect(lipa_na_mpesa_online)
+<<<<<<< HEAD
 =======
             name=form.save(commit=False)
             phone_Number= form.save(commit=False)
@@ -56,6 +63,8 @@ def payment(request):
             payment.save()
             return redirect(hood)
 >>>>>>> accb98b2a5f84e50c095c686034d5945fb1084de
+=======
+>>>>>>> vin
     else:
         form = PaymentForm()
     return render(request,'payment.html',locals())
@@ -69,10 +78,12 @@ def toilet(request):
         form = ToiletForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            account_number=form.save(commit=False)
-            toilet_tag=form.save(commit=False) 
-            # toilet.save()
-            return redirect(index)
+            phone_Number = form.cleaned_data['phone_Number']
+            amount = form.cleaned_data['amount']
+            # form.save(commit=False)
+            # payment.save()
+            lipa_na_mpesa_online(phone_Number, amount)
+            return redirect(lipa_na_mpesa_online)
     else:
         form = ToiletForm()
     return render(request,'toilet.html',locals())            
@@ -88,7 +99,9 @@ def getAccessToken(request):
     mpesa_access_token = json.loads(r.text)
     validated_mpesa_access_token = mpesa_access_token['access_token']
     return HttpResponse(validated_mpesa_access_token)
+
 def lipa_na_mpesa_online(phone, amount):
+
     access_token = MpesaAccessToken.validated_mpesa_access_token
     api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
     headers = {"Authorization": "Bearer %s" % access_token}
@@ -162,23 +175,19 @@ class PaymentList(APIView):
 
         
 
-    url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest?api_key=ZGWH5CJonGUS9C7eRzvkQGgzMJShHaDD'
-	r = requests.get(url.format()).json()
-	movie_list = r['results']
-	print(movie_list)
-	movie_results = []
-	for movie_item in movie_list:
-		id = movie_item.get('id')
-		title = movie_item.get('original_title')
-		overview = movie_item.get('overview')
-		image = movie_item.get('poster_path')
-		rating = movie_item.get('vote_average')
-		vote_count = movie_item.get('vote_count'),
-		age = movie_item.get('genre_ids[3]')
+   
 
-		if image:
-			movie_object = Movie(id,title,overview,image,rating,vote_count,age)
-			movie_results.append(movie_object)
-			
-	return render(request, "home.html", {"allmovies": movie_results})
+#consuming mpesa api biils
+
+def bills(request):
+    url = 'https://sandbox.safaricom.co.ke/mpesa/?api_key=ZGWH5CJonGUS9C7eRzvkQGgzMJShHaDD'
+    response = requests.get(url.format()).json()
+    details = []
+    for detail in details:
+        amount = detail.get('amount')
+        phone_number = detail.get('phone_number')
+        reference = detail.get('reference')
+        return HttpResponse(response.text)
+
+    return render(request, 'bills.html', {'details': details})
 

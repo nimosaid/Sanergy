@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ block.super}}
+{% load bootstrap3 %}
+{% load static %}
+
+
+
+<div class="container">
+    <h1>No Transactions done yet</h1>
+{% for details in detail%}
+
+<p>{{ amount}}</p>
+
+
+{% endfor %}
+</div>
+
+{% endblock %}

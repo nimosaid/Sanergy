@@ -1,52 +1,56 @@
-{% extends "base.html" %}
+{% extends "registration/base.html" %}
 {% load bootstrap4 %}
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
+<body>
+    <div class="container">
+        <div class="row">
         <!-- Empty div -->
 
-        <div class="col-md-4 phone-section">
-        </div>
+            <div class="col-md-4 phone-section">
+            </div>
 
 
-        <div class="col-md-4 form-section">
-            {{form.media}}
 
-            {% if form.errors %}
-            <p>Please enter correct value</p>
-            {% endif %}
+            <div class="col-md-4 form-section">
+                {{form.media}}
 
-            <div class="panel panel-default" style="margin-top:150px;">
+                {% if form.errors %}
+                <p>Please enter correct value</p>
+                {% endif %}
 
-                <div class="panel-body">
+                <div class="panel panel-default" style="margin-top:150px;">
 
-                    <div class="text-center">
-                        <h3>Create your profile</h3>
-                        <form action="{% url 'update_profile' %}" method="post" enctype="multipart/form-data">
+                    <div class="panel-body">
 
-                            {% csrf_token%}
-                            {% bootstrap_form form %}
+                        <div class="text-center">
+                            <h3>Create your profile</h3>
+                            <form action="{% url 'update_profile' %}" method="post" enctype="multipart/form-data">
 
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-primary login-button" value="Post">
+                                {% csrf_token%}
+                                {% bootstrap_form form %}
 
-                            </div>
-                            <input type="hidden" name="next" value="/">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary login-button" value="Post">
 
-                        </form>
+                                </div>
+                                <input type="hidden" name="next" value="/">
+
+                            </form>
+                        </div>
                     </div>
+
                 </div>
 
             </div>
+        <!-- Empty div -->
+                        <div class="col-md-4"></div>
+                        </div>
 
         </div>
-        <!-- Empty div -->
-        <div class="col-md-4"></div>
     </div>
-
-</div>
+</body>
 
 <!-- <style>
     .panel {

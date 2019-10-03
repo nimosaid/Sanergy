@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^api/payment/$', views.PaymentList.as_view()),
     url(r'^confirmation/$', views.confirmation, name='confrimation'),
 
-    url(r'^bills',views.bills,name='bills')
+    url(r'^bills',views.bills,name='bills'),
 #profile
     url(r'^my-profile/',views.my_profile, name='my-profile'),
     url(r'^user/(?P<username>\w{0,50})',views.user_profile,name='user-profile'),

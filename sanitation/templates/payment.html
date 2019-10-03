@@ -57,11 +57,16 @@
 
 
 
+
         <form action="{% url 'payment' %}" method="POST" enctype="multipart/form-data">
 
             {% csrf_token %}
             {% bootstrap_form form %}
             <input type="submit" class="btn btn-primary" value="Pay" style="border-radius: 15px 50px 30px; color:#eedc12 ;font-size:25px">
+
+            {%csrf_token%}            {% bootstrap_form form %}
+            <input type="submit" class="btn btn-primary" value="Update" style="border-radius: 15px 50px 30px; color:#eedc12 ;font-size:25px">
+
         </form>
 
 </body>

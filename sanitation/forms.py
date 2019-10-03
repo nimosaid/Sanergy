@@ -11,4 +11,4 @@ class PaymentForm(forms.ModelForm):
 class ToiletForm(forms.ModelForm):
     class Meta:
         model  = Toilet
-        fields = ['account_number','toilet_tag',]
+        fields = ['toilet_tag',]

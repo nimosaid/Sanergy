@@ -8,12 +8,11 @@ from requests.auth import HTTPBasicAuth
 import json
 from .mpesa_credentials import *
 from django.views.decorators.csrf import csrf_exempt
-from .models import *
-from .forms import *
 from mpesa_api.core.mpesa import Mpesa
 from .serializer import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
+<<<<<<< HEAD
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -31,6 +30,10 @@ from mpesa_api.core.mpesa import Mpesa
 from .serializer import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+import datetime as dt
+
+
 
       
 
@@ -159,7 +162,7 @@ def lipa_na_mpesa_online(phone, amount):
         "PartyA": phone,  # replace with your phone number to get stk push
         "PartyB": LipanaMpesaPpassword.Business_short_code,
         "PhoneNumber": phone,  # replace with your phone number to get stk push
-        "CallBackURL": "https://0e070bc3.ngrok.io/confirmation/",
+        "CallBackURL": "https://da5bc38e.ngrok.io/confirmation/",
         "AccountReference": "Obindi",
         "TransactionDesc": "Testing stk push"
     }
@@ -268,3 +271,84 @@ def bills(request):
 
     return render(request, 'bills.html', {'details': details})
 
+
+def search_results(request):
+    
+    if 'bills' in request.GET and request.GET["bills"]:
+        search_term = request.GET.get("bills")
+        searched_bills = Bills.search_by_phone_number(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"bills": searched_bills})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
+
+
+
+#creating end point
+
+class BillsList(APIView):
+
+    def get(self, request, format=None):
+        all_bills = Bills.objects.all()
+        serializers = BillsSerializer(all_bills, many=True)
+        return Response(serializers.data)
+
+
+#consuming the bills api
+def all_customer_bills(request):
+    url = ('http://127.0.0.1:8000/api/bills')
+    response = requests.get(url)
+    customer_bills = response.json()
+    for bill in customer_bills:
+        id = bill.get('id')
+        amount = bill.get('amount')
+        phone_number = bill.get('phone_number')
+        reference = bill.get('reference')
+    return render(request, 'all_bills.html', {'customer_bills': customer_bills})
+
+
+
+
+# @login_required(login_url='/accounts/login/')
+# def user_profile(request,username):
+#     user = User.objects.get(username=username)
+#     profile =Profile.objects.get(username=user)
+
+# @login_required(login_url='/accounts/login/')
+# def create_profile(request):
+#     current_user=request.user
+#     if request.method=="POST":
+#         form =ProfileForm(request.POST,request.FILES)
+#         if form.is_valid():
+#             profile = form.save(commit = False)
+#             profile.username = current_user
+#             profile.save()
+#         return HttpResponseRedirect('/')
+#     else:
+#         form = ProfileForm()
+#         return render(request,'profile/profile_form.html',{"form":form})
+    
+
+# @login_required(login_url='/accounts/login/')
+# def update_profile(request):
+#     current_user=request.user
+#     if request.method=="POST":
+#         instance = Profile.objects.get(username=current_user)
+#         form =ProfileForm(request.POST,request.FILES,instance=instance)
+#         if form.is_valid():
+#             profile = form.save(commit = False)
+#             profile.username = current_user
+#             profile.save()
+
+#         return redirect('index')
+
+#     elif Profile.objects.get(username=current_user):
+#         profile = Profile.objects.get(username=current_user)
+#         form = ProfileForm(instance=profile)
+#     else:
+#         form = ProfileForm()
+
+#     return render(request,'profile/update_profile.html',{"form":form})

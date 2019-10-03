@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import datetime
+
 
 class User(models.Model):
     first_name=models.CharField(max_length = 65, blank=True)
     last_name=models.CharField(max_length = 65, blank=True)
     phone_number=models.IntegerField(default=0, blank= True)
-    user_id_number= models.IntegerField(default=0, blank=True)
+    user_id_number= models.IntegerField(default="",primary_key=True)
     location=models.CharField(max_length = 65, blank=True)
 
 class Payment(models.Model):
@@ -67,8 +69,8 @@ class MpesaPayment(BaseModel):
         return self.first_name        
 
 class Toilet(models.Model):
-    toilet_tag= models.IntegerField(default=0,primary_key=True)
-    user_id_number = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    toilet_tag= models.IntegerField(default=0, null=True)
+    user_id_number = models.ForeignKey(User,on_delete=models.CASCADE)
 
     def save_toilet(self):
         self.save()
@@ -76,12 +78,12 @@ class Toilet(models.Model):
     def __str__(self):
         return self.toilet_tag    
 
-class Bills(models.Model):
+class Bills(models.Model,):
     amount=models.IntegerField(blank=True)
     phone_number=models.TextField()
     reference=models.TextField()
-    date=models.DateTimeField()
-    toilet_tag=models.ForeignKey(Toilet,on_delete=models.CASCADE,null=True)
+    # date = models.DateField(default=datetime.date.today)
+    # toilet_tag=models.ForeignKey(Toilet,on_delete=models.CASCADE,)
 
     def __str__(self):
         return str(self.amount) 
@@ -92,7 +94,7 @@ class Bills(models.Model):
 
     @classmethod
     def search_by_phone_number(cls,search_term):
-        bills = cls.objects.filter(title__icontains=search_term)
+        bills = cls.objects.filter(phone_number__icontains=search_term)
         return bills   
 
 

@@ -5,16 +5,29 @@
 {% load static %}
 
 
+<body style="background:url('static/img/slum.jpg');text-align:center;">
+<br>
+<br>
+<br>
+<br>
+    <div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+        <h1 style="font-weight:bold;font-size:65px; color:#eedc12;">No Transactions done yet</h1>
+        {% for bill in bills %}
 
-<div class="container">
-    <h1>No Transactions done yet</h1>
-{% for bill in bills %}
-
-<p> AMOUNT :{{ bill.amount}}</p>
-<p> PHONE NUMBER :{{ bill.phone_number }}</p>
+        <p> AMOUNT :{{ bill.amount}}</p>
+        <p> PHONE NUMBER :{{ bill.phone_number }}</p>
 
 
-{% endfor %}
-</div>
+        {% endfor %}
+    </div>
 
-{% endblock %}
+        {% endblock %}
+</body>

@@ -19,7 +19,12 @@ urlpatterns = [
     url(r'^api/payment/$', views.PaymentList.as_view()),
     url(r'^confirmation/$', views.confirmation, name='confrimation'),
     url(r'^bills',views.bills,name='bills'),
-    url(r'^search/', views.search_results, name='search_results')
+    url(r'^search/', views.search_results, name='search_results'),
+
+    #API'S
+    url(r'^api/bills/', views.BillsList.as_view()),
+    url(r'^all_customer_bills/', views.all_customer_bills, name='all_customer_bills'),
+
 
 
  #profile

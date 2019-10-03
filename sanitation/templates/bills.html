@@ -6,42 +6,67 @@
 
 
 <body style="background:url('static/img/slum.jpg');text-align:center;">
-<br>
-<br>
-<br>
-<br>
-    <div class="container">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-        <h1 style="font-weight:bold;font-size:65px; color:#eedc12;">No Transactions done yet</h1>
-        {% for bill in bills %}
 
-       <table style="width:100%">
-  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th> 
-    <th>Age</th>
+<br>
+<br>
+
+<style>
+    table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-spacing: 5px;
+
+}
+
+th, td {
+  padding: 15px;
+}
+th {
+  text-align: left;
+}
+</style>
+
+    <div class="container">
+    <img class="fixed-logo"  src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-color-195.png" width="180px" alt="Sanergy">
+    <br>
+    <br>
+    <br>
+        <h1 style="font-weight:bold;font-size:65px; color:#eedc12;">Payments</h1>
+        <br>
+        <br>
+        <br>
+        
+        <br>
+        
+        <table style="width:100%; color:#eedc12">     
+  
+  <tr style="font-weight:bold;font-size:25px;">
+    <th style="font-weight:bold;font-size:30px;">Telephone</th>
+    <td>0707096346</td>
+    <td>0745577855</td>
+    <td>0763466346</td>
+    <td>0745749355</td>
   </tr>
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td> 
-    <td>50</td>
+  <tr style="font-weight:bold;font-size:25px;">
+    <th style="font-weight:bold;font-size:30px;"> Account:</th>
+    <td>2584994783</td>
+    <td>6395783904</td>
+    <td>4795799478</td>
+    <td>7047836859</td>
   </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td> 
-    <td>94</td>
+  <tr style="font-weight:bold;font-size:25px;">
+    <th style="font-weight:bold;font-size:30px;">Date:</th>
+    <td>8.09.2019</td>
+    <td>7.09.2019</td>
+    <td>6.09.2019</td>
+    <td>6.09.2019</td>
   </tr>
+  
+  
 </table>
 
 
-        {% endfor %}
+       
     </div>
 
         {% endblock %}

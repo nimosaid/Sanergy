@@ -11,7 +11,7 @@ class User(models.Model):
 class Payment(models.Model):
     name = models.CharField(max_length = 65, blank=True)
     account = models.CharField(max_length = 65, blank=True)
-    phone_Number= models.IntegerField(default=0)
+    phone_Number= models.CharField(max_length=15)
     amount = models.IntegerField(default=0)
 
 
@@ -31,19 +31,25 @@ class BaseModel(models.Model):
 class MpesaCalls(BaseModel):
     ip_address = models.TextField()
     caller = models.TextField()
+    merchant_id = models.TextField(null=False)
+    checkout_request_id=models.TextField(null=False)
     conversation_id = models.TextField()
     content = models.TextField()
     class Meta:
         verbose_name = 'Mpesa Call'
         verbose_name_plural = 'Mpesa Calls'
+
 class MpesaCallBacks(BaseModel):
     ip_address = models.TextField()
-    caller = models.TextField()
+    caller = models.TextField() 
+    merchant_id = models.TextField(null=False)
+    checkout_request_id=models.TextField(null=False)
     conversation_id = models.TextField()
     content = models.TextField()
     class Meta:
         verbose_name = 'Mpesa Call Back'
         verbose_name_plural = 'Mpesa Call Backs'
+
 class MpesaPayment(BaseModel):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
@@ -69,7 +75,9 @@ class Toilet(models.Model):
         self.save()
 
     def __str__(self):
-        return self.toilet   
+
+        
+        return self.toilet_tag    
 
 class Bills(models.Model):
     amount=models.IntegerField(blank=True)
@@ -81,5 +89,9 @@ class Bills(models.Model):
 
 
     def save_bills(self):
+
         self.save()
  
+
+        self.save()
+

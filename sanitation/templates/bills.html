@@ -1,3 +1,4 @@
+
 {%extends 'base.html'%}
 {% load bootstrap3 %}
 {% load static %}
@@ -37,4 +38,26 @@
 
 
 
+
+
+{% extends 'base.html' %}
+{% block content %}
+{{ block.super}}
+{% load bootstrap3 %}
+{% load static %}
+
+
+
+<div class="container">
+    <h1>No Transactions done yet</h1>
+{% for bill in bills %}
+
+<p> AMOUNT :{{ bill.amount}}</p>
+<p> PHONE NUMBER :{{ bill.phone_number }}</p>
+
+
+{% endfor %}
+</div>
+
+{% endblock %}
 

@@ -1,4 +1,5 @@
-#!/home/nimo/Documents/Moringa-django-projects/Sanergy/virtual/bin/python
+#!/home/moringa/Desktop/Sanergy/virtual/bin/python3.6
+
 # -*- coding: utf-8 -*-
 import re
 import sys

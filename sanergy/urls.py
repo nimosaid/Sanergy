@@ -14,10 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+<<<<<<< HEAD
+=======
+
+>>>>>>> vincentouma-master
 from django.conf.urls import url,include
 from django.contrib.auth import views
 import sanitation.urls
 
+<<<<<<< HEAD
+=======
+urlpatterns = [
+    url('admin/', admin.site.urls),
+    url(r'',include('sanitation.urls')),
+
+]
+
+>>>>>>> vincentouma-master
 
 urlpatterns = [
     url('admin/', admin.site.urls),
@@ -26,3 +39,9 @@ urlpatterns = [
    
 ]
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> vincentouma-master

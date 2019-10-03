@@ -1,0 +1,5 @@
+virtual
+venv
+*.pyc
+__pycache__
+ngrok.zip

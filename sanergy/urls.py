@@ -19,6 +19,7 @@ from django.contrib.auth import views
 import sanitation.urls
 
 
+
 urlpatterns = [
     url('admin/', admin.site.urls),
     url('',include('sanitation.urls')),

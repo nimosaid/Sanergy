@@ -1,0 +1,33 @@
+{%extends 'base.html'%} 
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    {% if phones%}
+      <h2>Found {{ phone|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2> Found no phone number for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+  {% if phones %}
+    {% for phone in phones %}
+      <div class="col-sm-6 col-md-3">
+          <h1>}</h1>
+      </div>
+       <div class="row">
+     <p></p>
+   </div>
+
+   <div class="row">
+     <p> {{phone.pub_date|timesince}}</p>
+   </div>
+
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{% endblock %}

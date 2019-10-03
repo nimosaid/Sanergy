@@ -2,6 +2,7 @@
 {% block content %}
 {{ block.super}}
 {% load bootstrap3%}
+
 <style>
 
 #id_name{
@@ -45,16 +46,29 @@
 
 
 
-    <div class="container" style="background-color:none;text-align:center; color:#eedc12; font-size:25px">
+    <div class="container" style="background-color:none;text-align:center; color:#eedc12; font-size:25px;padding-left:200px;padding-right:200px;">
+      
         <img class="fixed-logo"  src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-color-195.png" width="180px" alt="Sanergy">
         <br>
         <br>
         <br>
         <form action="{% url 'payment' %}" method="POST" enctype="multipart/form-data" style="background:none; ">
+
+
+
+
+        <form action="{% url 'payment' %}" method="POST" enctype="multipart/form-data">
+
             {% csrf_token %}
             {% bootstrap_form form %}
-            <input type="submit" class="btn btn-primary" value="Update" style="border-radius: 15px 50px 30px; color:#eedc12 ;font-size:25px">
+            <input type="submit" class="btn btn-primary" value="Pay" style="border-radius: 15px 50px 30px; color:#eedc12 ;font-size:25px">
         </form>
-    </div>
+
 </body>
+
+
+
+
+
+
 {% endblock %}

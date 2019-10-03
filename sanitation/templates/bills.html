@@ -1,45 +1,3 @@
-
-{%extends 'base.html'%}
-{% load bootstrap3 %}
-{% load static %}
-{% block content %} 
-{{ block.super}}
-
-
-<body style="text-align:center; background:url('static/img/slum.jpg');color:white;">
-<br>
-<br>
-<br>
-    <div class="container"  >
-
-  <!-- Looping through news   -->
-  {% for payment in payments %}
-
-        <div class="row">
-    <!-- displaying News articles -->
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <h2 class="text-center"> {{ payment.title }} </h2>
-            </div>
-
-        </div>
-
-  {% empty %}
-        <div class="row">
-        <h2 class="text-center">No Transactions done yet</h2>
-        </div>
-  {% endfor %}
-
-    </div>
-
-</body>
-
-{% endblock %}
-
-
-
-
-
-
 {% extends 'base.html' %}
 {% block content %}
 {{ block.super}}
@@ -60,4 +18,3 @@
 </div>
 
 {% endblock %}
-

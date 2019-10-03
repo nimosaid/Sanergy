@@ -10,8 +10,8 @@ from .mpesa_credentials import *
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from .forms import *
-
-
+from mpesa_api.core.mpesa import Mpesa
+from .serializer import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -205,26 +205,7 @@ def bills(request):
         reference = detail.get('reference')
         return HttpResponse(response.text)
 
-    bills=Bills.object.all()
-
-    return render(request, 'bills.html', {'bills': bills})
-
-
-def search_results(request):
-
-    if 'article' in request.GET and request.GET["phone"]:
-        search_term = request.GET.get("phone")
-        searched_phone = Phone.search_by_title(search_term)
-        message = f"{search_term}"
-
-        return render(request, 'data/search.html',{"message":message,"phone": searched_phones})
-
-    else:
-        message = "You haven't searched for any term"
-        return render(request, 'data/search.html',{"message":message})
-
     bills=Bills.objects.all()
 
-    return render(request, 'bills.html', {'bills': bills})
-
+    return render(request, 'bills.html', {'details': details})
 

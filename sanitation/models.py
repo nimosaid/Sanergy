@@ -31,8 +31,8 @@ class BaseModel(models.Model):
 class MpesaCalls(BaseModel):
     ip_address = models.TextField()
     caller = models.TextField()
-    merchant_id = models.TextField(null=False)
-    checkout_request_id=models.TextField(null=False)
+    merchant_id = models.TextField(null=False,default="")
+    checkout_request_id=models.TextField(null=False,default="")
     conversation_id = models.TextField()
     content = models.TextField()
     class Meta:
@@ -42,8 +42,8 @@ class MpesaCalls(BaseModel):
 class MpesaCallBacks(BaseModel):
     ip_address = models.TextField()
     caller = models.TextField() 
-    merchant_id = models.TextField(null=False)
-    checkout_request_id=models.TextField(null=False)
+    merchant_id = models.TextField(null=False,default="")
+    checkout_request_id=models.TextField(null=False,default="")
     conversation_id = models.TextField()
     content = models.TextField()
     class Meta:
@@ -79,19 +79,19 @@ class Toilet(models.Model):
         
         return self.toilet_tag    
 
+
+
+
 class Bills(models.Model):
     amount=models.IntegerField(blank=True)
     phone_number=models.TextField()
     reference=models.TextField()
 
     def __str__(self):
-        return str(self.amount) 
+        return (self.amount) 
 
 
     def save_bills(self):
 
         self.save()
  
-
-        self.save()
-

@@ -1,0 +1,27 @@
+{%extends 'all-news/base.html'%} 
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    {% if articles%}
+      <h2>Found {{ bills|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2> Found 0 bills for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+  {% if bills %}
+    {% for bills in bills %}
+      <div class="col-sm-6 col-md-3">
+          <h1>{{bills.phone_number}}</h1>
+          <p>{{ bills.amount}}</p>
+
+      </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{% endblock %}

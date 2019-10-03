@@ -31,8 +31,8 @@ class BaseModel(models.Model):
 class MpesaCalls(BaseModel):
     ip_address = models.TextField()
     caller = models.TextField()
-    merchant_id = models.TextField(null=False)
-    checkout_request_id=models.TextField(null=False)
+    merchant_id = models.TextField(null=False,default="")
+    checkout_request_id=models.TextField(null=False,default="")
     conversation_id = models.TextField()
     content = models.TextField()
     class Meta:
@@ -42,8 +42,8 @@ class MpesaCalls(BaseModel):
 class MpesaCallBacks(BaseModel):
     ip_address = models.TextField()
     caller = models.TextField() 
-    merchant_id = models.TextField(null=False)
-    checkout_request_id=models.TextField(null=False)
+    merchant_id = models.TextField(null=False,default="")
+    checkout_request_id=models.TextField(null=False,default="")
     conversation_id = models.TextField()
     content = models.TextField()
     class Meta:
@@ -67,8 +67,7 @@ class MpesaPayment(BaseModel):
         return self.first_name        
 
 class Toilet(models.Model):
-    account_number= models.CharField(max_length=100)
-    toilet_tag= models.CharField(max_length=100)
+    toilet_tag= models.IntegerField(default=0,primary_key=True)
     user_id_number = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
 
     def save_toilet(self):
@@ -81,6 +80,8 @@ class Bills(models.Model):
     amount=models.IntegerField(blank=True)
     phone_number=models.TextField()
     reference=models.TextField()
+    date=models.DateTimeField()
+    toilet_tag=models.ForeignKey(Toilet,on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return str(self.amount) 
@@ -88,3 +89,10 @@ class Bills(models.Model):
 
     def save_bills(self):
         self.save()
+
+    @classmethod
+    def search_by_phone_number(cls,search_term):
+        bills = cls.objects.filter(title__icontains=search_term)
+        return bills   
+
+

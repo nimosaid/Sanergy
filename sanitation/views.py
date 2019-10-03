@@ -107,3 +107,17 @@ def bills(request):
         return HttpResponse(response.text)
 
     return render(request, 'bills.html', {'details': details})
+
+
+def search_results(request):
+
+    if 'article' in request.GET and request.GET["phone"]:
+        search_term = request.GET.get("phone")
+        searched_phone = Phone.search_by_title(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'data/search.html',{"message":message,"phone": searched_phones})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'data/search.html',{"message":message})

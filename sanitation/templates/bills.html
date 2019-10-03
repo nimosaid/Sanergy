@@ -5,33 +5,32 @@
 {{ block.super}}
 
 
-
-<div class="container">
+<body style="text-align:center; background:url('static/img/slum.jpg');color:white;">
+<br>
+<br>
+<br>
+    <div class="container"  >
 
   <!-- Looping through news   -->
   {% for payment in payments %}
 
-  <div class="row">
+        <div class="row">
     <!-- displaying News articles -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <h2 class="text-center"> {{ payment.title }} </h2>
-    </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <h2 class="text-center"> {{ payment.title }} </h2>
+            </div>
 
-     <!--Display news Article images  -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <img src="static/img/map10.jpg" class="img-responsive" alt="Image">
-    </div>
-
-  </div>
+        </div>
 
   {% empty %}
-  <div class="row">
-    <h2 class="text-center">No Transactions done yet</h2>
-  </div>
+        <div class="row">
+        <h2 class="text-center">No Transactions done yet</h2>
+        </div>
   {% endfor %}
 
-</div>
+    </div>
 
+</body>
 
 {% endblock %}
 

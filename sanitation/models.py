@@ -1,6 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+class Profile(models.Model):
+    username = models.ForeignKey(User,on_delete=models.CASCADE)
+    phone_number = models.CharField(default=None,max_length=10)
+    id_number =models.CharField(max_length=10,default=None)
+
+
+
 class User(models.Model):
     first_name=models.CharField(max_length = 65, blank=True)
     last_name=models.CharField(max_length = 65, blank=True)

@@ -8,13 +8,13 @@ from requests.auth import HTTPBasicAuth
 import json
 from .mpesa_credentials import *
 from django.views.decorators.csrf import csrf_exempt
-from .models import *
-from .forms import *
 from mpesa_api.core.mpesa import Mpesa
 from .serializer import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth.decorators import login_required
+import datetime as dt
+
 
 # Create your views here.
 
@@ -266,5 +266,41 @@ def bills(request):
 
     bills=Bills.objects.all()
 
-    return render(request, 'bills.html', {'details': details})
+    return render(request, 'all_bills.html', {'details': details})
 
+def search_results(request):
+    
+    if 'bills' in request.GET and request.GET["bills"]:
+        search_term = request.GET.get("bills")
+        searched_bills = Bills.search_by_phone_number(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"bills": searched_bills})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
+
+
+
+#creating end point
+
+class BillsList(APIView):
+
+    def get(self, request, format=None):
+        all_bills = Bills.objects.all()
+        serializers = BillsSerializer(all_bills, many=True)
+        return Response(serializers.data)
+
+
+#consuming the bills api
+def all_customer_bills(request):
+    url = ('http://127.0.0.1:8000/api/bills')
+    response = requests.get(url)
+    customer_bills = response.json()
+    for bill in customer_bills:
+        id = bill.get('id')
+        amount = bill.get('amount')
+        phone_number = bill.get('phone_number')
+        reference = bill.get('reference')
+    return render(request, 'all_bills.html', {'customer_bills': customer_bills})

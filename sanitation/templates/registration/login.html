@@ -29,7 +29,14 @@
 ​
 
 <body>
-
+     <nav>
+        <ul>
+          
+          <a class="nav-link" href="{% url 'my-profile'%}">Profile</a>
+          <a class="nav-link" href="{% url 'update-profile' %}">Edit Profile</a>
+          
+        </ul>
+      </nav>
     <div id="container-login">
 
         <div id="title">
@@ -38,6 +45,8 @@
 
         </div>
 
+
+     
         ​
 
         <form>

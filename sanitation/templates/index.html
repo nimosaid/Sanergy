@@ -46,7 +46,7 @@ nav li {
 }
 
 nav a {
-  color: #eedc12;
+  color: white;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 14px;
@@ -85,13 +85,13 @@ nav a:hover::before {
     <header>
     <div class="container">
      
-    <img class="fixed-logo"  src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-color-195.png" width="180px" alt="Sanergy">
-   
+    
+   <img class="fixed-logo"  src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-color-195.png" width="180px" alt="Sanergy">
       <nav>
         <ul>
-          <li><a href="{% url 'homePage' %}">Home</a></li>
-          <li><a href="{% url 'my-profile' %}">Client Login</a></li>
-          <li><a href="my-profile">Staff Login</a></li>
+          <li style="font-weight: bold;"><a href="{% url 'homePage' %}">Home</a></li>
+          <li style="font-weight: bold;"><a class="nav-link" href="/accounts/login">Sign In</a></li>
+          <li style="font-weight: bold;"><a href="#">Staff Login</a></li>
           
         </ul>
       </nav>
@@ -108,7 +108,7 @@ nav a:hover::before {
 </div>
 <br>
 <br>
-<h1 style="color: #005486ff;text-align: center;font-family:Montserrat;font-weight:700;font-style:normal ;font-size:40px; " class="vc_custom_heading">THE URBAN SANITATION</h1>
+<h1 style="color: #005486ff;text-align: center;font-family:Montserrat;font-weight:700;font-weight:bold;font-style:normal ;font-size:40px; padding-left:100px;" class="vc_custom_heading"><br>THE URBAN SANITATION</h1>
 
 <br>
 <br>
@@ -117,12 +117,12 @@ nav a:hover::before {
     <div class="vc_row wpb_row vc_inner vc_row-fluid vc_row-o-content-middle vc_row-flex"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
     <div class="wpb_text_column wpb_content_element ">
     <div class="wpb_wrapper">
-    <p dir="ltr" style="text-align: center;"><span style="color: #005486ff; font-size:20px;">Cities are growing faster than ever. Currently, 60 million new residents move to urban areas every year.<br>
-25% live in slums, amounting to 1 billion people with inadequate housing and limited access to basic<br>
-services. This number is expected to double to 2 billion by 2030.<br>
-In Kenya, loss of productivity due to illness costs the country 1% of its GDP every year and at current<br>
-rates, complete sanitation coverage will take 150 years. Sanergy provides non-sewered sanitation<br>
-solutions that serve all urban residents and are 4 times cheaper than sewers.</span></p>
+    <p dir="ltr" style="text-align: center;"><span style="color: #005486ff; font-size:23px;">Although we take it for granted,<br> 
+    sanitation is a physical measure that has probably done more to increase human life span than any kind of drug or surgery.<br>
+    Our suggestion is that we should first work to ensure the Third World has quality sanitation.<br>
+</span></p>
+<br>
+<br>
     </div>
     <br>
     <br>

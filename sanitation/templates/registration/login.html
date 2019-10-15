@@ -1,131 +1,66 @@
-<!DOCTYPE html>
-<html>
-<head>
-
-    <meta charset="UTF-8">
-
-    <title>Login</title>
-
-    <meta name="description" content="Login - Register Template">
-
-    <meta name="author" content="Levert Co">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="/static/css/main.css">
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <style>
-        body {
-
-            background-color: #303641;
-
-        }
-    </style>
-
-</head>
-
-​
-
-<body>
-     <nav>
-        <ul>
-          
-          <a class="nav-link" href="{% url 'my-profile'%}">Profile</a>
-          <a class="nav-link" href="{% url 'update-profile' %}">Edit Profile</a>
-          
-        </ul>
-      </nav>
-    <div id="container-login">
-
-        <div id="title">
-
-            <i class="material-icons lock">lock</i> Login
-
-        </div>
-
-
-     
-        ​
-
-        <form>
-
-            <div class="input">
-
-                <div class="input-addon">
-
-                    <i class="material-icons">face</i>
-
-                </div>
-
-                <input id="username" placeholder="Username" type="text" required class="validate" autocomplete="off">
-
-            </div>
-
-            ​
-
-            <div class="clearfix"></div>
-
-            ​
-
-            <div class="input">
-
-                <div class="input-addon">
-
-                    <i class="material-icons">vpn_key</i>
-
-                </div>
-
-                <input id="password" placeholder="Password" type="password" required class="validate"
-                    autocomplete="off">
-
-            </div>
-
-            ​
-
-            <div class="remember-me">
-
-                <input type="checkbox">
-
-                <span style="color: #DDD">Remember Me</span>
-
-            </div>
-
-            ​
-
-            <input type="submit" value="Log In" />
-
+{% extends "sanitation/templates/registration/base.html" %}
+{% block content %}
+<div class="container" style="padding-top: 200px;">
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <div class="content-section">
+        <div id="google-plus-button">Google+ Sign In</div>
+        <form method="POST">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Log In</legend>
+            
+          </fieldset>
+          <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Login</button>
+            <small class="text-muted ml-2">
+              <a href="{% url 'homepage' %}">Forgot Password?</a>
+            </small>
+          </div>
         </form>
-
-        ​
-
-        <div class="forgot-password">
-
-            <a href="#">Forgot your password?</a>
-
+        <div class="border-top pt-3">
+          <small class="text-muted">
+            Don't have an Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+          </small>
         </div>
-
-        <div class="privacy">
-
-            <a href="#"> Sanergy Privacy Policy</a>
-
-        </div>
-
-        ​
-
-        <div class="register">
-
-            Don't have an account yet?
-
-            <a href="#"><button id="register-link">Register here</button></a>
-
-        </div>
-
+      </div>
     </div>
+    <div class="col-4"></div>
+  </div>
+</div>
+{% block scripts %}
+<script src="https://apis.google.com/js/api:client.js"></script>
 
-</body>
-
-​
-
-</html>
+<script type="text/javascript">
+  gapi.load('auth2', function () {
+    var auth2;
+    auth2 = gapi.auth2.init({
+      client_id: "<PUT SOCIAL_AUTH_GOOGLE_PLUS_KEY HERE>",
+      scope: "<PUT BACKEND SCOPE HERE>"
+    });
+    auth2.then(function () {
+      var button = document.getElementById("google-plus-button");
+      console.log("User is signed-in in Google+ platform?", auth2.isSignedIn.get() ? "Yes" : "No");
+      auth2.attachClickHandler(button, {}, function (googleUser) {
+        // Send access-token to backend to finish the authenticate
+        // with your application
+        var authResponse = googleUser.getAuthResponse();
+        var $form;
+        var $input;
+        $form = $("<form>");
+        $form.attr("action", "/complete/google-plus");
+        $form.attr("method", "post");
+        $input = $("<input>");
+        $input.attr("name", "id_token");
+        $input.attr("value", authResponse.id_token);
+        $form.append($input);
+        // Add csrf-token if needed
+        $(document.body).append($form);
+        $form.submit();
+      });
+    });
+  });
+</script>
+{% endblock %}
+{% endblock content %}

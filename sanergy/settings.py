@@ -82,6 +82,7 @@ CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq:5672//'
 INSTALLED_APPS = [
     'sanitation',
     'bootstrap3',
+    'bootstrap4',
     'rest_framework',
     'mpesa_api.core',
     'mpesa_api.util',

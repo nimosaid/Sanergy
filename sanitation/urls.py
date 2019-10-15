@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url,include
 from . import views
+from django.contrib.auth import views as auth_views
 
 
 
@@ -24,7 +25,10 @@ urlpatterns = [
     url(r'^api/bills/', views.BillsList.as_view()),
     url(r'^all_customer_bills/', views.all_customer_bills, name='all_customer_bills'),
 
- 
+    #profile
+    url(r'^my-profile/',views.my_profile, name='my-profile'),
+    url(r'^create/profile$',views.create_profile, name='create-profile'),
+    url(r'^update/profile$',views.update_profile, name='update-profile'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) 

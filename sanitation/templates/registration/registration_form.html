@@ -1,0 +1,73 @@
+{% extends "registration/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+
+<div class="container" style="text-align:center;">
+<img class="fixed-logo"  src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-color-195.png" width="180px" alt="Sanergy">
+    <div class="row">
+        <!-- Empty div -->
+        <div class="col-md-4"></div>
+
+        <div class="col-md-4 form-section">
+            {% if form.errors %}
+            <p>Some information might be incorrect</p>
+            {% endif %}
+            <div class="text-center">
+                <div class="panel panel-default" style="margin-top:70px;">
+
+                    <div class="panel-body"style="background:#eedc12">
+                        <form action="/accounts/register/" method="post">
+
+                            {% csrf_token%}
+                            {% bootstrap_form form %}
+                            <div class="form-group text-center">
+                                <input type="submit" class="btn btn-success sign-up-button" value="Sign Up">
+                            </div>
+                            <input type="hidden" name="next" value="{{next}}">
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default" style="background:#005486ff">
+                <div class="panel-body text-center" style="color:#eedc12">
+                    <p>Have an account? <span><a class="" href="/accounts/login">Login</a></span></p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4"></div>
+    </div>
+
+    <!-- <style>
+        .panel {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))fixed;
+        }
+        p,
+        label,
+        a,
+        .help-block {
+            color: white;
+            font-size: 15px;
+        }
+        .panel-default {
+            border-color: inherit;
+        }
+        li {
+            color: white;
+            list-style: none;
+        }
+        .help-block {
+            display: none;
+        }
+        input {
+            text-align: center;
+        }
+    </style> -->
+
+    {% endblock %}

@@ -1,66 +1,81 @@
-{% extends "sanitation/templates/registration/base.html" %}
-{% block content %}
-<div class="container" style="padding-top: 200px;">
-  <div class="row">
-    <div class="col-4"></div>
-    <div class="col-4">
-      <div class="content-section">
-        <div id="google-plus-button">Google+ Sign In</div>
-        <form method="POST">
-          {% csrf_token %}
-          <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Log In</legend>
-            
-          </fieldset>
-          <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Login</button>
-            <small class="text-muted ml-2">
-              <a href="{% url 'homepage' %}">Forgot Password?</a>
-            </small>
-          </div>
-        </form>
-        <div class="border-top pt-3">
-          <small class="text-muted">
-            Don't have an Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
-          </small>
-        </div>
-      </div>
-    </div>
-    <div class="col-4"></div>
-  </div>
-</div>
-{% block scripts %}
-<script src="https://apis.google.com/js/api:client.js"></script>
+{% extends "registration/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
 
-<script type="text/javascript">
-  gapi.load('auth2', function () {
-    var auth2;
-    auth2 = gapi.auth2.init({
-      client_id: "<PUT SOCIAL_AUTH_GOOGLE_PLUS_KEY HERE>",
-      scope: "<PUT BACKEND SCOPE HERE>"
-    });
-    auth2.then(function () {
-      var button = document.getElementById("google-plus-button");
-      console.log("User is signed-in in Google+ platform?", auth2.isSignedIn.get() ? "Yes" : "No");
-      auth2.attachClickHandler(button, {}, function (googleUser) {
-        // Send access-token to backend to finish the authenticate
-        // with your application
-        var authResponse = googleUser.getAuthResponse();
-        var $form;
-        var $input;
-        $form = $("<form>");
-        $form.attr("action", "/complete/google-plus");
-        $form.attr("method", "post");
-        $input = $("<input>");
-        $input.attr("name", "id_token");
-        $input.attr("value", authResponse.id_token);
-        $form.append($input);
-        // Add csrf-token if needed
-        $(document.body).append($form);
-        $form.submit();
-      });
-    });
-  });
-</script>
+{% block content %}
+
+<div class="container" style =" text-align:center;">
+<br>
+<br>
+<br>
+<br>
+<img class="fixed-logo"  src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-color-195.png" width="180px" alt="Sanergy">
+
+    <div class="row">
+    
+        <!-- Empty div -->
+    
+        <div class="col-md-4 phone-section">
+        
+        </div>
+
+
+
+        <div class="col-md-4 form-section">
+
+            {% if form.errors %}
+            <p>Password or Username is incorrect</p>
+            {% endif %}
+
+            <div class="panel panel-default" style="margin-top:100px;">
+
+                <div class="panel-body"  style="background:#005486ff">
+                    <div class="text-center"style="color:#eedc12">
+                        <form action="/accounts/login/" method="post">
+
+                            {% csrf_token%}
+                            {% bootstrap_form form %}
+
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success login-button" value="Log in">
+
+                            </div>
+                            <input type="hidden" name="next" value="/">
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel panel-default"  style="background:#eedc12">
+                <div class="panel-body text-center">
+                    <p> Don't have an account? <span><a class="" href="/accounts/register">Sign Up</a></span></p>
+                </div>
+            </div>
+
+        </div>
+        <!-- Empty div -->
+        <div class="col-md-4"></div>
+    </div>
+
+</div>
+
+<!-- <style>
+    .panel {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) fixed;
+    }
+    p,
+    label,
+    a {
+        color: white;
+        font-size: 15px;
+    }
+    .panel-default {
+        border-color: inherit;
+    }
+    input {
+        text-align: center;
+    }
+</style> -->
 {% endblock %}
-{% endblock content %}

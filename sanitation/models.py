@@ -22,14 +22,17 @@ class Payment(models.Model):
     account = models.CharField(max_length = 65, blank=True)
     phone_Number= models.CharField(max_length=15)
     amount = models.IntegerField(default=0)
-
+    timestamp = models.DateTimeField(auto_now_add=True,blank=True,null=True)
 
     def __str__(self):
         return self.name
 
     def save_payment(self):
         self.save()    
-
+    @classmethod
+    def search_by_phone_Number(cls,search_term):
+        payment = cls.objects.filter(phone_Number__icontains=search_term)
+        return payment 
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -95,12 +98,16 @@ class Bills(models.Model):
     amount=models.IntegerField(blank=True)
     phone_number=models.TextField()
     reference=models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True,blank=True,null=True)
 
     def __str__(self):
         return (self.amount) 
 
+    @classmethod
+    def search_by_phone_number(cls,search_term):
+        bills = cls.objects.filter(phone_number__icontains=search_term)
+        return bills   
 
     def save_bills(self):
 
         self.save()
- 

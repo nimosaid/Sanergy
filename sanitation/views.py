@@ -302,17 +302,16 @@ def bills(request):
     return render(request, 'all_bills.html', {'details': details})
 
 def search_results(request):
-    
-    if 'bills' in request.GET and request.GET["bills"]:
-        search_term = request.GET.get("bills")
-        searched_bills = Bills.search_by_phone_number(search_term)
-        message = f"{search_term}"
+    print(request.GET["payment"],'===================')
+    if 'payment' in request.GET and request.GET["payment"]:
+        search_term = request.GET.get("payment")
+        searched_payment = Payment.search_by_phone_Number(search_term)
+        message =f"{search_term}"
 
-        return render(request, 'search.html',{"message":message,"bills": searched_bills})
-
+        return render(request,'search.html',{"message":message,"payment":searched_payment})
     else:
-        message = "You haven't searched for any term"
-        return render(request, 'search.html',{"message":message})
+        message ="You haven't searched for any term"
+        return render(request,'search.html',{"message":message})    
 
 
 
